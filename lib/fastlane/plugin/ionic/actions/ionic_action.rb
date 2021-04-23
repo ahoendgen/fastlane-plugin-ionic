@@ -83,7 +83,7 @@ module Fastlane
         args << '--nofetch' if params[:cordova_no_fetch]
         args << '--no-resources' if params[:cordova_no_resources]
         if platform && !File.directory?("./platforms/#{platform}")
-          sh "ionic cordova platform add #{platform} --no-interactive #{args.join(' ')}"
+          sh "yarn ionic cordova platform add #{platform} --no-interactive #{args.join(' ')}"
         end
       end
 
@@ -110,7 +110,7 @@ module Fastlane
 
         if params[:cordova_prepare]
           # TODO: Remove params not allowed/used for `prepare`
-          sh "ionic cordova prepare #{params[:platform]} --no-interactive #{args.join(' ')}"
+          sh "yarn ionic cordova prepare #{params[:platform]} --no-interactive #{args.join(' ')}"
         end
 
         # special handling for `build_number` param
@@ -126,9 +126,9 @@ module Fastlane
         end
 
         if params[:platform].to_s == 'ios'
-          sh "ionic cordova compile #{params[:platform]} --no-interactive #{args.join(' ')} -- #{ios_args}" 
+          sh "yarn ionic cordova compile #{params[:platform]} --no-interactive #{args.join(' ')} -- #{ios_args}"
         elsif params[:platform].to_s == 'android'
-          sh "ionic cordova compile #{params[:platform]} --no-interactive #{args.join(' ')} -- -- #{android_args}" 
+          sh "yarn ionic cordova compile #{params[:platform]} --no-interactive #{args.join(' ')} -- -- #{android_args}"
         end
       end
 
